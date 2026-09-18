@@ -3,9 +3,9 @@
 </style></head><body><main class="app"><header><div><h1>NDS Tracklist Parser</h1><p>트랙리스트를 Stereo / Dolby ISRC 시트로 정리합니다.</p></div><div class="toolbar"><button id="guideButton" class="pill guide">Guide</button><button id="versionButton" class="pill">v3.0</button></div></header>
 <textarea id="sourceText" spellcheck="false" aria-label="원본 트랙리스트" placeholder="NDS 트랙리스트를 #부터 마지막 ISRC까지 붙여넣으세요."></textarea>
 <div class="input-meta"><span id="inputStats"></span><div class="toolbar"><label><input id="autoParse" type="checkbox" checked>자동 파싱</label><button id="clearButton">초기화</button><button id="parseButton" class="primary">파싱</button></div></div>
-<div id="summary" class="summary"></div><div class="result-controls"><div class="toolbar"><button id="editButton" aria-pressed="false">편집</button><button id="undoButton" title="Ctrl/Cmd+Z">실행 취소</button><button id="redoButton" title="Ctrl/Cmd+Shift+Z">다시 실행</button></div><div class="toolbar"><label><input id="includeHeader" type="checkbox">헤더 포함</label><button id="copyTsvButton" class="primary">TSV 복사</button><button id="downloadCsvButton">CSV 다운로드</button><details><summary>더보기</summary><div class="menu"><button id="downloadTsvButton">전체 TSV 다운로드</button><button id="downloadSelection">선택 TSV 다운로드</button><button id="addRowButton">행 추가</button><button id="deleteRows">선택 행 삭제</button><button id="renumberButton">순번 재정렬</button><button id="toggleDurationButton"></button><span id="formatState"></span></div></details></div></div>
-<div id="tableWrap" class="table-wrap" aria-label="결과 시트"></div><div id="selectionStatus" class="selection-status"></div><details class="qc"><summary>QC 상세</summary><div id="validationLog" class="log"></div></details><footer>로컬 브라우저 처리 · 데이터 외부 전송 없음 · 작업은 이 브라우저에 자동 저장됩니다.</footer></main>
-<dialog id="guide"><button>닫기</button><h2>Guide</h2><ul><li>원문을 붙여넣으면 자동 파싱됩니다. Ctrl/Cmd+Enter 또는 파싱 버튼으로도 실행합니다.</li><li>ISRC 1개는 Stereo, 2개는 Stereo / Dolby 순서입니다. 3개 이상은 QC 오류로 표시합니다.</li><li>드래그로 셀 범위를 선택합니다. 행 번호·열 이름·좌상단 #으로 행·열·전체를 선택합니다.</li><li>표에서 Ctrl/Cmd+C로 TSV 복사, 편집 모드에서 Ctrl/Cmd+V로 붙여넣습니다. 선택이 없으면 전체를 복사합니다.</li><li>더블클릭·Enter·F2로 셀 편집, Delete로 선택 값 삭제. 화살표로 이동하고 Shift로 범위를 확장합니다.</li><li>Ctrl/Cmd+Z 실행 취소, Ctrl/Cmd+Shift+Z 또는 Ctrl/Cmd+Y 다시 실행. 수정하면 QC가 즉시 갱신됩니다.</li><li>붙여넣기는 시작 셀부터 적용됩니다. 행은 자동 추가되며, 열 범위를 넘으면 적용하지 않습니다. 헤더 포함 복사는 선택 열의 헤더를 추가합니다.</li><li>원문을 다시 파싱하면 편집 결과를 대체합니다. 실행 취소로 복구할 수 있습니다.</li><li>외부 라이브러리 없이 단일 HTML로 작동합니다. 자동 저장은 브라우저 설정에 따라 제한될 수 있습니다.</li></ul></dialog>
+<div id="summary" class="summary"></div><div class="result-controls"><div class="toolbar"><button id="toggleDurationButton"></button><span id="formatState" class="format-state"></span></div><div class="toolbar"><label><input id="includeHeader" type="checkbox">헤더 포함</label><button id="copyTsvButton" class="primary">TSV 복사</button><details><summary>더보기</summary><div class="menu"><button id="editButton" aria-pressed="false">편집</button><button id="undoButton" title="Ctrl/Cmd+Z">실행 취소</button><button id="redoButton" title="Ctrl/Cmd+Shift+Z">다시 실행</button><button id="downloadCsvButton">CSV 다운로드</button><button id="downloadTsvButton">전체 TSV 다운로드</button><button id="downloadSelection">선택 TSV 다운로드</button><button id="addRowButton">행 추가</button><button id="deleteRows">선택 행 삭제</button><button id="renumberButton">순번 재정렬</button></div></details></div></div>
+<div id="tableWrap" class="table-wrap" aria-label="결과 시트"></div><div id="selectionStatus" class="selection-status"></div><details class="qc"><summary>QC 상세</summary><div id="validationLog" class="log"></div></details><footer>로컬 브라우저 처리 · 데이터 외부 전송 없음 · 파일을 다시 열면 빈 상태로 시작합니다.</footer></main>
+<dialog id="guide"><button>닫기</button><h2>Guide</h2><ul><li>원문을 붙여넣으면 자동 파싱됩니다. Ctrl/Cmd+Enter 또는 파싱 버튼으로도 실행합니다.</li><li>ISRC 1개는 Stereo, 2개는 Stereo / Dolby 순서입니다. 3개 이상은 QC 오류로 표시합니다.</li><li>드래그로 셀 범위를 선택합니다. 행 번호·열 이름·좌상단 #으로 행·열·전체를 선택합니다.</li><li>표에서 Ctrl/Cmd+C로 TSV 복사, 편집 모드에서 Ctrl/Cmd+V로 붙여넣습니다. 선택이 없으면 전체를 복사합니다.</li><li>더블클릭·Enter·F2로 셀 편집, Delete로 선택 값 삭제. 화살표로 이동하고 Shift로 범위를 확장합니다.</li><li>Ctrl/Cmd+Z 실행 취소, Ctrl/Cmd+Shift+Z 또는 Ctrl/Cmd+Y 다시 실행. 수정하면 QC가 즉시 갱신됩니다.</li><li>붙여넣기는 시작 셀부터 적용됩니다. 행은 자동 추가되며, 열 범위를 넘으면 적용하지 않습니다. 헤더 포함 복사는 선택 열의 헤더를 추가합니다.</li><li>원문을 다시 파싱하면 편집 결과를 대체합니다. 실행 취소로 복구할 수 있습니다.</li><li>외부 라이브러리 없이 단일 HTML로 작동하며, 파일을 새로 열 때마다 빈 상태로 시작합니다.</li></ul></dialog>
 <dialog id="version"><button>닫기</button><h2>v3.0</h2><p>1,536px 미니멀 카드 · 시트 범위 선택 · TSV 복사/붙여넣기 · 편집 및 실행 취소 · 변경 셀 표시 · QC 상세 접기</p></dialog><button id="themeButton" hidden></button><div id="toast" class="toast" role="status" aria-live="polite"></div><script>
     (() => {
       const STORAGE_KEY = 'nds-tracklist-parser-v2';
@@ -225,7 +225,6 @@
         displayTracks();
         renderSummary();
         updateDurationUi();
-        saveState();
       }
 
       function parseAndRender() {
@@ -274,28 +273,6 @@
         state.durationFormat = target;
         render();
         toast(`${changed}개 재생시간을 ${target.toUpperCase()} 형식으로 변환했습니다.`);
-      }
-
-      function saveState() {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ source: el.source.value, tracks: state.tracks, theme: document.documentElement.dataset.theme || 'light', autoParse: el.autoParse.checked, includeHeader: el.includeHeader.checked, durationFormat: state.durationFormat }));
-        } catch (_) {}
-      }
-
-      function loadState() {
-        try {
-          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-          if (!saved) return;
-          el.source.value = saved.source || '';
-          state.source = el.source.value;
-          state.tracks = Array.isArray(saved.tracks) ? saved.tracks : [];
-          state.durationFormat = saved.durationFormat || 'mm:ss';
-          el.autoParse.checked = saved.autoParse !== false;
-          el.includeHeader.checked = saved.includeHeader !== false;
-          document.documentElement.dataset.theme = 'light';
-          updateThemeButton();
-          if (state.tracks.length) render();
-        } catch (_) {}
       }
 
       function updateThemeButton() {
@@ -355,7 +332,7 @@
       const on=(id,fn)=>document.getElementById(id).addEventListener('click',fn);
       on('parseButton',parseAndRender);
       on('clearButton',()=>{clearTimeout(parseTimer);checkpoint();el.source.value='';state.source='';state.tracks=[];selection=null;baseline={};updateStats();render();});
-      el.source.addEventListener('input',()=>{updateStats();saveState();clearTimeout(parseTimer);if(el.autoParse.checked)parseTimer=setTimeout(parseAndRender,550);});
+      el.source.addEventListener('input',()=>{updateStats();clearTimeout(parseTimer);if(el.autoParse.checked)parseTimer=setTimeout(parseAndRender,550);});
       el.source.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();parseAndRender();}});
       on('editButton',()=>{editing=!editing;document.getElementById('editButton').textContent=editing?'편집 중':'편집';document.getElementById('editButton').setAttribute('aria-pressed',String(editing));});
       on('undoButton',()=>restore(undo,redo));on('redoButton',()=>restore(redo,undo));
@@ -366,9 +343,10 @@
       on('downloadCsvButton',()=>download(`nds_tracklist_${timestamp()}.csv`,getCsv(),'text/csv;charset=utf-8'));
       on('downloadTsvButton',()=>download(`nds_tracklist_${timestamp()}.tsv`,getTsv(),'text/tab-separated-values;charset=utf-8'));
       on('downloadSelection',()=>download(`nds_selection_${timestamp()}.tsv`,selectionTsv(),'text/tab-separated-values;charset=utf-8'));
-      el.includeHeader.addEventListener('change',saveState);el.autoParse.addEventListener('change',()=>{clearTimeout(parseTimer);saveState();});
+      el.autoParse.addEventListener('change',()=>{clearTimeout(parseTimer);});
       on('guideButton',()=>document.getElementById('guide').showModal());on('versionButton',()=>document.getElementById('version').showModal());
       document.querySelectorAll('dialog').forEach(d=>{d.querySelector('button').onclick=()=>d.close();d.addEventListener('click',e=>{if(e.target===d)d.close();});});
-      loadState();baseline=Object.fromEntries(state.tracks.map(t=>[t.id,{...t}]));updateStats();render();
+      try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+      baseline={};updateStats();render();
     })();
 </script></body></html>
